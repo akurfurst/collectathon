@@ -132,12 +132,12 @@ You will be responsible for making changes to the game. MAKE SURE THAT ALL PARTN
 For each change, first make a plan in instructions.md. Pull, add, commit, push your plan, then implement it. Pull, add, commit and push the implementation. You will be make a lot of commits! This is good! Merge conflicts will likely arise. This is OK and natural. Resolve them as they come up.
 
 Required changes (increasing in difficulty).
-1. Change the speed of the player
-1. Change the backdrop color
-1. Change the starting position of the player and dot, making new `static constexpr` for starting X and Y of each
-1. Make it so when the player hits start, the game restarts (the player and treasure are sent back to their initial positions and the score is reset to zero)
-1. Make it so that the player loops around the screen (if they go off the left of the screen, they show up on the right, if they go off the bottom of the screen they show up at the top, etc.)
-1. Make a speed boost. When the player presses 'A', their speed is increased for a short amount of time. They can only use the speed boost 3 times. They get all speed boosts back when the game is restarted by pressing start.
+1. Change the speed of the player - K
+1. Change the backdrop color - Adam
+1. Change the starting position of the player and dot, making new `static constexpr` for starting X and Y of each - K
+1. Make it so when the player hits start, the game restarts (the player and treasure are sent back to their initial positions and the score is reset to zero) - Adam
+1. Make it so that the player loops around the screen (if they go off the left of the screen, they show up on the right, if they go off the bottom of the screen they show up at the top, etc.) - Adam
+1. Make a speed boost. When the player presses 'A', their speed is increased for a short amount of time. They can only use the speed boost 3 times. They get all speed boosts back when the game is restarted by pressing start. - K
 
 Again, ALL PARTNERS SHOULD BE ADDING COMMITING AND PUSHING FREQUENTLY.
 
