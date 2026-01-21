@@ -92,6 +92,13 @@ int main()
             player.set_y(80);
         }
 
+        //add restart button
+        if(bn::keypad::start_pressed()){
+            treasure.set_position(0,0);
+            player.set_position(-50, 50);
+            score = 0;
+        }
+
         // The bounding boxes of the player and treasure, snapped to integer pixels
         bn::rect player_rect = bn::rect(player.x().round_integer(),
                                         player.y().round_integer(),
