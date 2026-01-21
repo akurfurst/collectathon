@@ -74,6 +74,24 @@ int main()
             player.set_y(player.y() + SPEED);
         }
 
+        //loop the plaer if they go off screen
+
+        //x-axis
+        if(player.x() >= 120){
+            player.set_x(-120);
+        }
+        else if(player.x() <= -120){
+            player.set_x(120);
+        }
+
+        //y-axis
+        if(player.y() >= 80){
+            player.set_y(-80);
+        }
+        else if(player.y() <= -80){
+            player.set_y(80);
+        }
+
         // The bounding boxes of the player and treasure, snapped to integer pixels
         bn::rect player_rect = bn::rect(player.x().round_integer(),
                                         player.y().round_integer(),
@@ -104,6 +122,9 @@ int main()
 
         // Update RNG seed every frame so we don't get the same sequence of positions every time
         rng.update();
+
+        //logs player position each update
+        //BN_LOG("(", player.x(), ",", player.y(), ")");
 
         bn::core::update();
     }
