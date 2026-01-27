@@ -12,6 +12,7 @@
 #include <bn_color.h>
 
 #include "bn_sprite_items_dot.h"
+#include "bn_sprite_items_coin.h"
 #include "bn_sprite_items_square.h"
 #include "common_fixed_8x16_font.h"
 
@@ -61,7 +62,7 @@ int main()
     // bn::sprite_ptr player = bn::sprite_items::square.create_sprite(-50, 50);
     bn::sprite_ptr player = bn::sprite_items::square.create_sprite(startPosX, startPosY); // KJeans Changed
 
-    bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(0, 0);
+    bn::sprite_ptr treasure = bn::sprite_items::coin.create_sprite(0, 0);
 
     while (true)
 
@@ -152,6 +153,12 @@ int main()
             treasure.set_position(new_x, new_y);
 
             score++;
+
+            // kjeans added funtionality so that every 2 points the player gets another boost
+            if (score % 2 == 0 && score != 0)
+            {
+                curBoosts++;
+            }
         }
 
         // Update score display
