@@ -196,8 +196,7 @@ Make sure to be making commits and testing your game along the way!
   ![Screenshot showing how to begin opening a pull request](begin-pr-screenshot.png)
 1. This will take you to a new page. At the bottom of the page you should see a visual representation of the differences (diff) your new change will introduce. Add a title and description to your pull request (PR).
 1. Click *Create pull request* to open the pull request.
-1. Congrats! You have created your first pull request!
-1. In Canvas, please copy the link to the pull request you created to submit your assignment. For this practice exercise I will not be merging your request. But in a real open-source repository, a *maintainer* would give you feedback on your changes, and if they were happy with them the would *merge* your PR (accept your changes into the original version).
+1. Congrats! You have created your first pull request! For this practice exercise I will not be merging your request. But in a real open-source repository, a *maintainer* would give you feedback on your changes, and if they were happy with them the would *merge* your PR (accept your changes into the original version).
 
 ### Submitting
 BOTH PARTNERS MUST SUBMIT TO CANVAS.
