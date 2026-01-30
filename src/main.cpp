@@ -196,7 +196,7 @@ int main()
         {
             timeBoostChance = rng.get_int(1, 100000);
         }
-        if (timeBoostChance > 99900 && !isSpawnedTB) // if valid spawnchance value, spawn in a timeBoost and set isSpawnedTB bool true to prevent more spawning
+        if (timeBoostChance > 99700 && !isSpawnedTB) // if valid spawnchance value, spawn in a timeBoost and set isSpawnedTB bool true to prevent more spawning
         {
 
             int newX = rng.get_int(MIN_X, MAX_X);
