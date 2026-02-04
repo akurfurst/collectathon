@@ -51,6 +51,8 @@ static constexpr int boostSpeedMax = 10;
 static constexpr int useableBoostsMax = 3;
 int availableBoosts = useableBoostsMax;
 
+
+
 int main()
 {
     bn::core::init();
@@ -85,9 +87,25 @@ int main()
     int newCoinY = rng.get_int(MIN_Y, MAX_Y);
     bn::sprite_ptr treasure = bn::sprite_items::coin.create_sprite(newCoinX, newCoinY);
 
+    // indicator variables
+    int currentTime = 0;
+    bn::vector<bn::sprite_ptr, 32> indicator_sprites = {};
+
     while (true)
 
     {
+        // add timer
+        ticks += timer.elapsed_ticks_with_restart();
+        int64_t seconds = time - (ticks / bn::timers::ticks_per_second());
+        if (seconds < 0)
+            seconds = 0;
+        bn::string<32> time_string("Time Remaining:");
+        time_string.append(bn::to_string<MAX_SCORE_CHARS>(seconds));
+        time_sprites.clear();
+        text_generator.generate(-50, -70,
+                                time_string,
+                                time_sprites);
+
         // -KJeans added speed boostSpeed;
         if (bn::keypad::a_pressed())
         {
@@ -160,6 +178,7 @@ int main()
             availableBoosts = useableBoostsMax; // reset boosts
             ticks = 0;
             timer.restart();
+            indicator_sprites.clear();
 
             bn::backdrop::set_color(bn::color(20, 20, 31));
         }
@@ -189,6 +208,19 @@ int main()
             {
                 availableBoosts++;
             }
+
+            //point indicator
+            currentTime = seconds;
+            bn::string<32> indicator_string("+1");
+            indicator_sprites.clear();
+            text_generator.generate(player.x(), player.y(),
+                                              indicator_string,
+                                              indicator_sprites);
+        }
+
+        //clare point indicator after 1 second
+        if(currentTime - seconds > 1){
+            indicator_sprites.clear();
         }
 
         /// KJeans  TIME BOOST LOGIC BEGIN///////////////////////////////////////////////////////////////////////
@@ -222,17 +254,7 @@ int main()
         boost_string += bn::to_string<MAX_SCORE_CHARS>(availableBoosts);
         text_generator.generate(SCORE_X + 3, SCORE_Y + 12, boost_string, text_sprites);
 
-        // add timer
-        ticks += timer.elapsed_ticks_with_restart();
-        int64_t seconds = time - (ticks / bn::timers::ticks_per_second());
-        if (seconds < 0)
-            seconds = 0;
-        bn::string<32> time_string("Time Remaining:");
-        time_string.append(bn::to_string<MAX_SCORE_CHARS>(seconds));
-        time_sprites.clear();
-        text_generator.generate(-50, -70,
-                                time_string,
-                                time_sprites);
+        
 
         // Update score display
         bn::string<32> score_string("Score:");
@@ -246,6 +268,7 @@ int main()
         while (seconds == 0)
         {
             bn::backdrop::set_color(bn::color(0, 0, 0));
+            indicator_sprites.clear();
             if (bn::keypad::start_pressed())
             {
                 // Kjeans- creates rng values to spawn treasure on restart
@@ -274,6 +297,7 @@ int main()
 
         // logs player position each update
         // BN_LOG("(", player.x(), ",", player.y(), ")");
+        BN_LOG(currentTime - seconds);
 
         bn::core::update();
     }
